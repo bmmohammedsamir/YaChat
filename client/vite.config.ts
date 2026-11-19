@@ -557,10 +557,7 @@ export default defineConfig(({ command }) => ({
   resolve: {
 alias: {
       '~': path.join(import.meta.dirname, 'src/'),
-      'micromark-extension-math': path.resolve(
-        import.meta.dirname,
-        '../node_modules/micromark-extension-llm-math',
-      ),
+      'micromark-extension-math': require.resolve('micromark-extension-llm-math'),
     },
   },
 }));
