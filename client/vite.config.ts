@@ -555,9 +555,12 @@ export default defineConfig(({ command }) => ({
     chunkSizeWarningLimit: 1500,
   },
   resolve: {
-    alias: {
+alias: {
       '~': path.join(import.meta.dirname, 'src/'),
-      'micromark-extension-math': 'micromark-extension-llm-math',
+      'micromark-extension-math': path.resolve(
+        import.meta.dirname,
+        '../node_modules/micromark-extension-llm-math',
+      ),
     },
   },
 }));
