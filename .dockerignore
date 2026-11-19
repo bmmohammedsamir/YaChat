@@ -1,17 +1,6 @@
-**/.circleci
-**/.editorconfig
-**/.dockerignore
-**/.git
-**/.DS_Store
-**/.vscode
+.git
+node_modules
 **/node_modules
-
-# Specific patterns to ignore
-data-node
-meili_data*
-librechat*
-Dockerfile*
-docs
-
-# Ignore all hidden files
-.*
+client/dist
+logs
+uploads
