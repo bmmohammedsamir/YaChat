@@ -1,0 +1,44 @@
+name: Deploy YaChat to CentOS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: yachat-prod-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    timeout-minutes: 20
+    steps:
+      - name: Checkout private repository
+        uses: actions/checkout@v4
+        with:
+          path: repo-src
+          clean: true
+
+      - name: Sync changes and rebuild YaChat
+        run: |
+          rsync -a --delete \
+            --exclude='.env' \
+            --exclude='librechat.yaml' \
+            --exclude='docker-compose.override.yml' \
+            --exclude='data-node/' \
+            --exclude='meili_data*/' \
+            --exclude='images/' \
+            --exclude='uploads/' \
+            --exclude='logs/' \
+            "$GITHUB_WORKSPACE/repo-src/" /opt/librechat/
+
+          cd /opt/librechat
+          docker compose up -d --build --remove-orphans
+          docker image prune -f
+
+      - name: Verify YaChat via host Nginx
+        run: |
+          sleep 5
+          curl -fsS http://localhost:80/ > /dev/null
