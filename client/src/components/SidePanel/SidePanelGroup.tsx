@@ -49,7 +49,7 @@ const SidePanelGroup = memo(({ panel, children }: SidePanelProps) => {
     >
       {children}
     </ResizablePanel>,
-    !isSmallScreen && (
+    false && !isSmallScreen && (
       <ArtifactsPanel
         key="artifacts"
         panel={panel}
@@ -76,7 +76,7 @@ const SidePanelGroup = memo(({ panel, children }: SidePanelProps) => {
           {reversed ? panels.reverse() : panels}
         </ResizablePanelGroup>
       </div>
-      {panel != null && isSmallScreen && <div className="fixed inset-0 z-[100]">{panel}</div>}
+      {false && panel != null && isSmallScreen && <div className="fixed inset-0 z-[100]">{panel}</div>}
     </>
   );
 });

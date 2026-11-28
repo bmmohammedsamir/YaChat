@@ -36,7 +36,7 @@ function HelpSubmenu({
   onShowShortcuts: () => void;
 }) {
   const localize = useLocalize();
-  const hasHelpFaq = !!helpAndFaqURL && helpAndFaqURL !== '/';
+  const hasHelpFaq = false;
   const hasTos = !!termsOfServiceURL;
   const hasPrivacy = !!privacyPolicyURL;
   const showLegalDivider = (hasHelpFaq || true) && (hasTos || hasPrivacy);
@@ -174,14 +174,7 @@ function AccountSettings({ collapsed = false }: { collapsed?: boolean }) {
           <Files className="icon-md" aria-hidden="true" />
           {localize('com_nav_my_files')}
         </Menu.MenuItem>
-        <Menu.MenuItem
-          onClick={() => setShowSettings(true)}
-          className="select-item text-sm"
-          data-testid="nav-settings"
-        >
-          <GearIcon className="icon-md" aria-hidden="true" />
-          {localize('com_nav_settings')}
-        </Menu.MenuItem>
+
         <Menu.MenuSeparator className="bg-surface-hover -mx-1 my-1 h-px border-0" />
         <Menu.MenuItem onClick={() => logout()} className="select-item text-sm">
           <LogOut className="icon-md" aria-hidden="true" />

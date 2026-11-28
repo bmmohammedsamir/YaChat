@@ -169,7 +169,7 @@ export default function Landing({ centerFormOnLanding }: { centerFormOnLanding: 
         <div
           className={`flex ${textHasMultipleLines ? 'flex-col' : 'flex-col md:flex-row'} items-center justify-center gap-2`}
         >
-          {showIcon && (
+          {false && showIcon && (
             <div
               className={`relative size-10 justify-center ${textHasMultipleLines ? 'mb-2' : ''}`}
             >
@@ -202,7 +202,7 @@ export default function Landing({ centerFormOnLanding }: { centerFormOnLanding: 
               )}
             </div>
           )}
-          {name ? (
+          {false && name ? (
             <div className="flex flex-col items-center gap-0 p-2">
               <SplitText
                 key={`split-text-${name}`}

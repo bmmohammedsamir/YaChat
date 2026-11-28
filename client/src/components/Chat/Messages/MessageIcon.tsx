@@ -35,6 +35,9 @@ export function arePropsEqual(prev: MessageIconProps, next: MessageIconProps): b
 }
 
 const MessageIcon = memo(({ iconData, assistant, agent }: MessageIconProps) => {
+  if (iconData?.isCreatedByUser !== true) {
+    return null;
+  }
   const { isSharedConvo } = useShareContext();
   const { data: endpointsConfig } = useGetEndpointsQuery({ enabled: isSharedConvo !== true });
 
